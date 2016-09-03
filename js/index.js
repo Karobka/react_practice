@@ -3,15 +3,33 @@ var ReactDOM = require('react-dom');
 
 
 //Person is the React component
-var Person = function(props) {
-    return (
-        <div className="person">
-            <div className="person-name">{props.name}</div>
-            <img className="person-img" src={props.imageUrl} />
-            <div className="person-job">{props.job}</div>
-        </div>
-    );
-};
+var Person = React.createClass({
+    /** set the initial state of the highlight to false for each person created */
+    getInitialState: function() {
+        return {
+            highlight: false
+        };
+    },
+    /** on clicking set the state for the clicked component */
+    onClick: function() {
+        this.setState({
+            highlight: !this.state.highlight
+        });
+    },
+    render: function() {
+        var classes = 'person ' + (this.state.highlight ? 'highlight' : '');
+        return (
+            /** eventlisteners must be in the render method like this onClick listener */
+            <div className={classes} onClick={this.onClick}>
+                <div className="person-name">{this.props.name}</div>
+                <img className="person-img" src={this.props.imageUrl} />
+                <div className="person-job">
+                    {this.props.job}
+                </div>
+            </div>
+        );
+    }
+});
 
 var PersonList = function() {
     return (
