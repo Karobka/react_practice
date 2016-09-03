@@ -50,28 +50,34 @@
 	var ReactDOM = __webpack_require__(34);
 	
 	//Person is the React component
-	var Person = function Person() {
-	    //define some variables that our app needs
-	    var name = 'Derek Zoolander';
-	    var imageUrl = 'http://uifaces.com/assets/static/images/zoolander.jpg';
-	    var job = 'Male model';
-	    //return the html to be displayed
+	var Person = function Person(props) {
 	    return React.createElement(
 	        'div',
 	        { className: 'person' },
-	        '/*curly braces are used to tell React to sub in some JavaScript here name grabs the name var and inserts it*/',
 	        React.createElement(
 	            'div',
 	            { className: 'person-name' },
-	            name
+	            props.name
 	        ),
-	        '/** className for CSS classes */',
-	        React.createElement('img', { className: 'person-img', src: imageUrl }),
+	        React.createElement('img', { className: 'person-img', src: props.imageUrl }),
 	        React.createElement(
 	            'div',
 	            { className: 'person-job' },
-	            job
+	            props.job
 	        )
+	    );
+	};
+	
+	var PersonList = function PersonList() {
+	    return React.createElement(
+	        'div',
+	        { className: 'person-list' },
+	        React.createElement(Person, { name: 'Derek Zoolander',
+	            imageUrl: 'http://uifaces.com/assets/static/images/zoolander.jpg',
+	            job: 'Male model' }),
+	        React.createElement(Person, { name: 'Donald Knuth',
+	            imageUrl: 'http://www-cs-faculty.stanford.edu/~uno/don.gif',
+	            job: 'Clever chap' })
 	    );
 	};
 	
@@ -82,7 +88,7 @@
 	     * The second argument is where you want it to render.  In this case it is the html
 	     * element with 'app' as the class.
 	     */
-	    ReactDOM.render(React.createElement(Person, null), document.getElementById('app'));
+	    ReactDOM.render(React.createElement(PersonList, null), document.getElementById('app'));
 	});
 
 /***/ },

@@ -3,22 +3,25 @@ var ReactDOM = require('react-dom');
 
 
 //Person is the React component
-var Person = function() {
-    //define some variables that our app needs
-    var name = 'Derek Zoolander';
-    var imageUrl = 'http://uifaces.com/assets/static/images/zoolander.jpg';
-    var job = 'Male model';
-    //return the html to be displayed
+var Person = function(props) {
     return (
         <div className="person">
-        /*curly braces are used to tell React to sub in some JavaScript
-        here name grabs the name var and inserts it*/
-            <div className="person-name">{name}</div>
-            /** className for CSS classes */
-            <img className="person-img" src={imageUrl} />
-            <div className="person-job">
-                {job}
-            </div>
+            <div className="person-name">{props.name}</div>
+            <img className="person-img" src={props.imageUrl} />
+            <div className="person-job">{props.job}</div>
+        </div>
+    );
+};
+
+var PersonList = function() {
+    return (
+        <div className="person-list">
+            <Person name="Derek Zoolander"
+                    imageUrl="http://uifaces.com/assets/static/images/zoolander.jpg"
+                    job="Male model" />
+            <Person name="Donald Knuth"
+                    imageUrl="http://www-cs-faculty.stanford.edu/~uno/don.gif"
+                    job="Clever chap" />
         </div>
     );
 };
@@ -30,5 +33,5 @@ document.addEventListener('DOMContentLoaded', function() {
      * The second argument is where you want it to render.  In this case it is the html
      * element with 'app' as the class.
      */
-    ReactDOM.render(<Person />, document.getElementById('app'));
+    ReactDOM.render(<PersonList />, document.getElementById('app'));
 });
