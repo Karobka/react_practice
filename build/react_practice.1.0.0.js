@@ -49,115 +49,40 @@
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(34);
 	
-	var Person = React.createClass({
-	    displayName: 'Person',
-	
-	    getInitialState: function getInitialState() {
-	        return {
-	            highlight: false
-	        };
-	    },
-	    onClick: function onClick() {
-	        this.setState({
-	            highlight: !this.state.highlight
-	        });
-	    },
-	    render: function render() {
-	        var classes = 'person ' + (this.state.highlight ? 'highlight' : '');
-	        return React.createElement(
-	            'div',
-	            { className: classes, onClick: this.onClick },
-	            React.createElement(
-	                'div',
-	                { className: 'person-name' },
-	                this.props.name
-	            ),
-	            React.createElement('img', { className: 'person-img', src: this.props.imageUrl }),
-	            React.createElement(
-	                'div',
-	                { className: 'person-job' },
-	                this.props.job
-	            )
-	        );
-	    }
-	});
-	
-	var PersonList = function PersonList() {
+	//Person is the React component
+	var Person = function Person() {
+	    //define some variables that our app needs
+	    var name = 'Derek Zoolander';
+	    var imageUrl = 'http://uifaces.com/assets/static/images/zoolander.jpg';
+	    var job = 'Male model';
+	    //return the html to be displayed
 	    return React.createElement(
 	        'div',
-	        { className: 'person-list' },
-	        React.createElement(Person, { name: 'Derek Zoolander',
-	            imageUrl: 'http://uifaces.com/assets/static/images/zoolander.jpg',
-	            job: 'Male model' }),
-	        React.createElement(Person, { name: 'Donald Knuth',
-	            imageUrl: 'http://www-cs-faculty.stanford.edu/~uno/don.gif',
-	            job: 'Clever chap' })
-	    );
-	};
-	
-	var Card = function Card(props) {
-	    return React.createElement(
-	        'div',
-	        null,
-	        React.createElement(
-	            'p',
-	            null,
-	            props.text
-	        )
-	    );
-	};
-	
-	var List = function List(props) {
-	    return React.createElement(
-	        'div',
-	        null,
+	        { className: 'person' },
+	        '/*curly braces are used to tell React to sub in some JavaScript here name grabs the name var and inserts it*/',
 	        React.createElement(
 	            'div',
-	            null,
-	            props.title
+	            { className: 'person-name' },
+	            name
 	        ),
+	        '/** className for CSS classes */',
+	        React.createElement('img', { className: 'person-img', src: imageUrl }),
 	        React.createElement(
 	            'div',
-	            null,
-	            props.cards
+	            { className: 'person-job' },
+	            job
 	        )
 	    );
-	};
-	
-	var Board = function Board(props) {
-	    return React.createElement(
-	        'div',
-	        null,
-	        React.createElement(
-	            'div',
-	            null,
-	            props.title
-	        ),
-	        React.createElement(
-	            'div',
-	            null,
-	            props.lists
-	        )
-	    );
-	};
-	
-	var NewBoard = function NewBoard() {
-	    return React.createElement(
-	        'div',
-	        null,
-	        React.createElement(Board, { title: 'to Buy' }),
-	        React.createElement(Card, { text: 'Buy Soap' }),
-	        React.createElement(Card, { text: 'Buy Dog Food' }),
-	        React.createElement(List, { title: 'To Buy' })
-	    );
-	};
-	
-	Person.defaultProps = {
-	    imageUrl: 'http://www.gravatar.com/avatar/?d=identicon'
 	};
 	
 	document.addEventListener('DOMContentLoaded', function () {
-	    ReactDOM.render(React.createElement(NewBoard, null), document.getElementById('app'));
+	    /** first the render is called.  The first argument you pass in the root component 
+	     * "Person" that you want to render.
+	     * 
+	     * The second argument is where you want it to render.  In this case it is the html
+	     * element with 'app' as the class.
+	     */
+	    ReactDOM.render(React.createElement(Person, null), document.getElementById('app'));
 	});
 
 /***/ },
